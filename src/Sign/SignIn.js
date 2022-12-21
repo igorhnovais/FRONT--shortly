@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
+import axios from "axios";
 
 import {GiShorts} from "react-icons/gi";
 
