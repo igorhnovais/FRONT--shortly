@@ -1,9 +1,11 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import axios from "axios";
+import { Link, useNavigate  } from "react-router-dom";
 
 import {GiShorts} from "react-icons/gi";
+import {AuthContext} from "../Components/Auth";
 
 export default function SignUp(){
 
@@ -11,6 +13,29 @@ export default function SignUp(){
     const [password, setPassword] = useState("");
     const [habilit, setHabilit] = useState(false);
     const [disabled, setDisabled] = useState(false);
+    let navigate = useNavigate();
+
+    const { setUser } = useContext(AuthContext);
+
+    function signIn(event){
+
+        event.preventDefault();
+
+        setHabilit(true);
+        setDisabled(true);
+
+        const login = {
+            email,
+            password
+        };
+
+        const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/signin`, login);
+
+        promise.then(resp => {setUser(resp.data); navigate("/home")});
+
+        promise.catch((err => {alert(err.response?.data.message); setHabilit(false); setDisabled(false)}));
+    };
+
 
     return (
         <>
@@ -24,7 +49,7 @@ export default function SignUp(){
                <GiShorts/>
             </SectionBrand>
 
-            <form >
+            <form onSubmit={signIn}>
                 <DivInput>
                     <input disabled={disabled} placeholder="E-mail" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></input>
                     <input disabled={disabled} placeholder="Senha" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required></input>
