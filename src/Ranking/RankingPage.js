@@ -1,9 +1,30 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 import {GiShorts} from "react-icons/gi";
 import {FaTrophy} from "react-icons/fa";
+import RankingList from "../Ranking/RankingList";
 
 export default function RankingPage(){
+
+    const [ranking, setRanking] = useState([]);
+
+    useEffect(() => {
+
+        const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/ranking`);
+
+        promise.then(getRanking);
+
+        promise.catch(err => console.log(err.message))
+
+        function getRanking(resp){         
+            setRanking(resp.data)
+        }
+        
+    }, [ranking]);
+
+
     return (
         <>
             <SectionLog>
@@ -23,7 +44,7 @@ export default function RankingPage(){
 
             <SectionRanking>
                 <div>
-                    <h1>1. fulanainha - 32 linhs - 2 visualização</h1>
+                    {ranking?.map((item, i) => <RankingList item={item} i={i} key={i}/>)}
                 </div>
             </SectionRanking>
 
@@ -35,7 +56,6 @@ export default function RankingPage(){
 };
 
 const SectionLog = styled.section`
-    background-color: red;
     display: flex;
     justify-content: flex-end;
     & h1{
@@ -83,8 +103,10 @@ const SectionRanking = styled.section`
     justify-content: center;
     align-items: center;
     padding: 20px;
-    background-color: red;
-
+    & div{
+        display: flex;
+        flex-direction: column;
+    }
 `
 
 const SectionAlert = styled.section`
