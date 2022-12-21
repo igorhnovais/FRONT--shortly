@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 import {GiShorts} from "react-icons/gi";
 import {FaTrophy} from "react-icons/fa";
@@ -16,7 +17,7 @@ export default function RankingPage(){
 
         promise.then(getRanking);
 
-        promise.catch(err => console.log(err.message))
+        promise.catch(err => console.log(err.response.data.message))
 
         function getRanking(resp){         
             setRanking(resp.data)
@@ -28,8 +29,12 @@ export default function RankingPage(){
     return (
         <>
             <SectionLog>
-                <h1>Entrar</h1>
-                <h2>Cadastre-se</h2>
+                <Link to="/signin">
+                    <h1>Entrar</h1>
+                </Link>
+                <Link to ="/signup">
+                    <h2>Cadastre-se</h2>
+                </Link>
             </SectionLog>
 
             <SectionBrand>

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import {GiShorts} from "react-icons/gi";
 
@@ -12,6 +14,29 @@ export default function SignUp(){
     const [name, setName] = useState("");
     const [habilit, setHabilit] = useState(false);
     const [disabled, setDisabled] = useState(false);
+
+    let navigate = useNavigate();
+
+    function signUp(event){
+
+        event.preventDefault();
+
+        setHabilit(true);
+        setDisabled(true);
+
+        const registration = {
+            name,
+            email,
+            password,
+            confirmPassword
+        };
+
+        const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/signup`, registration);
+
+        promise.then((resp => { alert('Parabéns por ter criado sua conta'); navigate("/signin");}));
+
+        promise.catch((err) => {alert(err.response.data.message); setHabilit(false); setDisabled(false)});
+    }
 
     return (
         <>
@@ -25,7 +50,7 @@ export default function SignUp(){
                <GiShorts/>
             </SectionBrand>
 
-            <form >
+            <form onSubmit={signUp} >
                 <DivInput>
                     <input disabled={disabled} placeholder="Nome" type="text" value={name} onChange={(e) => setName(e.target.value)} required></input>
                     <input disabled={disabled} placeholder="E-mail" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></input>
