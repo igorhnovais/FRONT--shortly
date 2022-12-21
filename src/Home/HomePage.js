@@ -1,20 +1,65 @@
 import styled from "styled-components"
+import { useState, useContext, useEffect } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import {GiShorts} from "react-icons/gi";
-import {FaTrashAlt} from "react-icons/fa"
+import {AuthContext} from "../Components/Auth";
+import UrlList from "./UrlList";
+
 
 export default function HomePage(){
+
+    const [url, setUrl] = useState("");
+    const [info, setInfo] = useState([]);
+
+    const {user} = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    function newUrl(event){
+        event.preventDefault();
+
+        const link = {
+            url
+        };
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${user}`
+            }
+        };
+
+        const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/urls/shorten`, link, config);
+        promise.then((resp) => {setInfo(resp.data)});
+        promise.catch((err) => {alert(err.response.data.message)});
+
+    }
+
+    useEffect(() => {
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${user}`
+            }
+        };
+
+        const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/users/me`, config);
+        promise.then(resp => setInfo(resp.data));
+        promise.catch(err => {console.log(err.response.data.message); alert("Seu tempo expirou!"); navigate("/"); window.location.reload()})
+
+    }, [info])
+
     return(
         <>
             <SectionTop>
                 <div>
-                    <h1>Seja bem-vindo(a), Pessoa!</h1>
+                    <h1>Seja bem-vindo(a), {info.name}</h1>
                 </div>
-            <Div>
+                <Div>
                     <h2>Home</h2>
                     <h2>Ranking</h2>
                     <h2>Sair</h2>
-            </Div>          
+                </Div>          
             </SectionTop>
 
             <SectionBrand>
@@ -22,18 +67,15 @@ export default function HomePage(){
                 <GiShorts/>
             </SectionBrand>
 
-            <SectionUrl>
-                <input placeholder="links que cabem no bolso"/>
-                <button>Encurtar link</button>
-            </SectionUrl>
+            <form onSubmit={newUrl}>
+                <SectionUrl>
+                    <input placeholder="links que cabem no bolso" value={url} onChange={(e) => setUrl(e.target.value)} required/>
+                    <button>Encurtar link</button>
+                </SectionUrl>
+            </form>
 
             <SectionUrlShort>
-                <div>
-                    <p>google.com</p>
-                    <p>e56cv1</p>
-                    <p>quantidade de visitas: 13</p>
-                </div>
-                <FaTrashAlt/>
+                   {info.shortedUrls?.map((item, i) => <UrlList item={item} i={i} user={user} key={i}/>)}
             </SectionUrlShort>
         </>
     )
@@ -76,8 +118,8 @@ const SectionUrl = styled.section`
    display: flex ;
    justify-content: center;
    align-items: center;
-   background-color: yellow;
    width: 800px;
+   margin-top: 40px;
    & input {
     margin-right: 20px;
     height: 40px;
@@ -90,9 +132,9 @@ const SectionUrl = styled.section`
 
 const SectionUrlShort = styled.section`
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: blue;
     margin-top: 40px;
     width: 800px;
     & div{
@@ -100,12 +142,8 @@ const SectionUrlShort = styled.section`
         justify-content: space-between;
         align-items: center;
         padding: 10px;
-        background-color: green;
+        background-color: #c6c6c6;
         width: 100%;
-    }
-    & svg{
-        margin: 10px;
-        color: red;
-        font-size: 25px;
+        margin-bottom: 10px;
     }
 `

@@ -33,7 +33,6 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	background-color: #31684A;
 	flex-shrink: 0;
 	*{
 		box-sizing: border-box;

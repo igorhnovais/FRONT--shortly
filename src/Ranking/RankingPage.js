@@ -13,6 +13,7 @@ export default function RankingPage(){
 
     useEffect(() => {
 
+
         const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/ranking`);
 
         promise.then(getRanking);

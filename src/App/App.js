@@ -6,12 +6,14 @@ import RankingPage from "../Ranking/RankingPage";
 import HomePage from "../Home/HomePage";
 import SignUp from "../Sign/SignUp";
 import SignIn from "../Sign/SignIn";
+import GlobalStyle from "../Components/GlobalStyle";
 
 export default function App(){
 
     return (
         <>
             <BrowserRouter>
+                <GlobalStyle/>
                 <AuthProvider>
                     <Routes> 
                         <Route path={"/"} element={<Navigate replace to="/ranking" />}/>
