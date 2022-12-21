@@ -8,8 +8,6 @@ export default function SignUp(){
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-    const [name, setName] = useState("");
     const [habilit, setHabilit] = useState(false);
     const [disabled, setDisabled] = useState(false);
 
@@ -27,11 +25,9 @@ export default function SignUp(){
 
             <form >
                 <DivInput>
-                    <input disabled={disabled} placeholder="Nome" type="text" value={name} onChange={(e) => setName(e.target.value)} required></input>
                     <input disabled={disabled} placeholder="E-mail" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></input>
                     <input disabled={disabled} placeholder="Senha" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required></input>
-                    <input disabled={disabled} placeholder="Confirme a senha" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required></input>
-                    <Button disabled={disabled} type="submit"> {!habilit ? "Criar Conta" : <ThreeDots color={"white"}/>} </Button>
+                    <Button disabled={disabled} type="submit"> {!habilit ? "Entrar" : <ThreeDots color={"white"}/>} </Button>
                 </DivInput>
             </form>
         </>
@@ -42,13 +38,13 @@ const SectionLog = styled.section`
     display: flex;
     justify-content: flex-end;
     & h1{
-        font-size: 15px;
-        color: #9C9C9C;
+        font-size: 15px; 
+        color: #5D9040;
     }
     & h2{
         font-size: 15px;
         margin-left: 20px;
-        color: #5D9040;
+        color: #9C9C9C;
     }
 
 `
