@@ -1,0 +1,118 @@
+import styled from "styled-components";
+import { useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
+
+import {GiShorts} from "react-icons/gi";
+
+export default function SignUp(){
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [name, setName] = useState("");
+    const [habilit, setHabilit] = useState(false);
+    const [disabled, setDisabled] = useState(false);
+
+    return (
+        <>
+            <SectionLog>
+                <h1>Entrar</h1>
+                <h2>Cadastre-se</h2>
+            </SectionLog>
+
+            <SectionBrand>
+               <h1>Shortly</h1> 
+               <GiShorts/>
+            </SectionBrand>
+
+            <form >
+                <DivInput>
+                    <input disabled={disabled} placeholder="Nome" type="text" value={name} onChange={(e) => setName(e.target.value)} required></input>
+                    <input disabled={disabled} placeholder="E-mail" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></input>
+                    <input disabled={disabled} placeholder="Senha" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required></input>
+                    <input disabled={disabled} placeholder="Confirme a senha" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required></input>
+                    <Button disabled={disabled} type="submit"> {!habilit ? "Cadastrar" : <ThreeDots color={"white"}/>} </Button>
+                </DivInput>
+            </form>
+        </>
+    )
+}
+
+const SectionLog = styled.section`
+    background-color: red;
+    display: flex;
+    justify-content: flex-end;
+    & h1{
+        font-size: 15px;
+        color: #5D9040;
+    }
+    & h2{
+        font-size: 15px;
+        margin-left: 20px;
+        color: #9C9C9C;
+    }
+
+`
+
+const SectionBrand = styled.section`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & h1{
+        font-size: 80px;
+    }
+    & svg{
+        font-size: 80px;
+        color: green;
+        margin-left: 10px;
+    }
+`
+
+const DivInput = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    & input{
+        width: 303px;
+        height: 45px;
+        margin-top: 10px;
+        border: 1px solid rgb(207,207,207);
+        border-radius: 3px;
+        padding-left: 10px;
+        font-size: 20px;
+        ::placeholder{
+            font-size: 20px;
+            color: black;
+        }
+    }
+    & a{
+        text-decoration: none;
+    }
+   
+`
+
+const Button = styled.button`
+    background-color: #5D9040;
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 3px;
+    width: 303px;
+    margin-top: 10px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.35);
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    :active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+    }
+`
