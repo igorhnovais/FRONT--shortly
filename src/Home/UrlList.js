@@ -1,9 +1,9 @@
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import {FaTrashAlt} from "react-icons/fa"
-import { useEffect } from "react";
 
 export default function UrlList({item, i, user}){
 
@@ -32,10 +32,12 @@ export default function UrlList({item, i, user}){
     return (
         <>
             <Div>
-                <DivUrl> <p>{url}</p></DivUrl>
-                <DivShort><p>{shortUrl}</p></DivShort>
-                <DivVisit><p>quantidade de visitas: {visitCount}</p></DivVisit>
-                <FaTrashAlt onClick={deleteUrl}/>
+                <Link to={`/urls/${item.id}`} >
+                    <DivUrl> <p>{url}</p></DivUrl>
+                    <DivShort><p>{shortUrl}</p></DivShort>
+                    <DivVisit><p>quantidade de visitas: {visitCount}</p></DivVisit>
+                    <FaTrashAlt onClick={deleteUrl}/>
+                </Link>
             </Div>
         </>
     )

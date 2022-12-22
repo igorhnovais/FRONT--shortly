@@ -64,12 +64,18 @@ export default function RankingPage(){
 const SectionLog = styled.section`
     display: flex;
     justify-content: flex-end;
+    margin-top: 10px;
+    margin-bottom: 100px;
+    margin-right: 50px;
+    & a{
+        text-decoration: none;
+    }
     & h1{
-        font-size: 15px;
+        font-size: 20px;
         color: #5D9040;
     }
     & h2{
-        font-size: 15px;
+        font-size: 20px;
         margin-left: 20px;
         color: #9C9C9C;
     }
@@ -80,6 +86,7 @@ const SectionBrand = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 50px;
     & h1{
         font-size: 80px;
     }
@@ -94,6 +101,7 @@ const SectionName = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
     & svg{
         font-size: 60px;
         color: yellow;
@@ -108,10 +116,14 @@ const SectionRanking = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 20px; 
+    margin-bottom: 20px;
     & div{
         display: flex;
         flex-direction: column;
+        background-color: #c6c6c6; 
+        padding: 20px;
+        border-radius: 5px;
     }
 `
 
@@ -119,5 +131,6 @@ const SectionAlert = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 40px;
+    font-weight:700;
 `
