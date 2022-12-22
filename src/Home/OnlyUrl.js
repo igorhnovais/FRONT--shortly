@@ -19,12 +19,18 @@ export default function OnlyUrl(){
         promise.catch((err) => {console.log(err.response.data)})
 
     }, [id]);
+
+    function view(){
+        const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/urls/open/${url?.shortUrl}`);
+        promise.then(alert('deu certo'));
+        promise.catch(err => console.log(err.message));
+    }
     
     return (
         <>
             <Div>
                 <h1>Seu link mais curto!</h1>
-                <a href={`${url?.url}`}>
+                <a href={`${url?.url}`} onClick={view}>
                     <p>{url?.shortUrl}</p>
                 </a>
             </Div>
