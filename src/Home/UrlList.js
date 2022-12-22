@@ -48,8 +48,9 @@ const Div = styled.div`
     justify-content: center;
     min-width: 800px;
     margin-bottom: 20px;
-    background-color: #c6c6c6;
+    background-color: #80CC74;
     border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.35);
     & svg{
         font-size: 100px;
         color: red;
@@ -60,6 +61,8 @@ const DivUrl = styled.div`
     max-width: 250px;
     text-align: center;
     color: black;
+    font-size: 20px;
+    color: white;
     & div{
         display: flex;
         justify-content: center;
@@ -73,10 +76,13 @@ const DivShort = styled.div`
     justify-content: center;
     margin-left: 100px;
     color: black;
-    
+    font-size: 20px;
+    color: white;
 `
 
 const DivVisit = styled.div`
     width: 250px;
     color: black;
+    font-size: 18px;
+    color: white;
 `

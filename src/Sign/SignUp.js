@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import {GiShorts} from "react-icons/gi";
 
@@ -41,8 +42,12 @@ export default function SignUp(){
     return (
         <>
             <SectionLog>
-                <h1>Entrar</h1>
-                <h2>Cadastre-se</h2>
+                <Link to="/signin">
+                    <h1>Entrar</h1>
+                </Link>
+                <Link to="/signup">
+                    <h2>Cadastre-se</h2>
+                </Link>  
             </SectionLog>
 
             <SectionBrand>
@@ -66,22 +71,28 @@ export default function SignUp(){
 const SectionLog = styled.section`
     display: flex;
     justify-content: flex-end;
+    margin-top: 20px;
+    margin-right: 50px;
+    margin-bottom: 100px;
     & h1{
-        font-size: 15px;
+        font-size: 20px; 
         color: #9C9C9C;
     }
     & h2{
-        font-size: 15px;
+        font-size: 20px;
         margin-left: 20px;
-        color: #5D9040;
+        color: #5D9040; 
     }
-
+    & a{
+        text-decoration: none;
+    }
 `
 
 const SectionBrand = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 150px;
     & h1{
         font-size: 80px;
     }

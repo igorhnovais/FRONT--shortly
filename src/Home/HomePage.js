@@ -48,7 +48,7 @@ export default function HomePage(){
         promise.then(resp => setInfo(resp.data));
         promise.catch(err => {console.log(err.response.data.message); alert("Seu tempo expirou!"); navigate("/"); window.location.reload()})
 
-    }, [info])
+    }, [info, navigate, user])
 
     return(
         <> 
@@ -142,8 +142,8 @@ const SectionUrl = styled.section`
    margin-top: 40px;
    & input {
     margin-right: 20px;
-    height: 40px;
     width: 800px;
+    height: 50px;
    }
    & button{
     background-color: #5D9040;

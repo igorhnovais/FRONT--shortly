@@ -11,7 +11,6 @@ export default function OnlyUrl(){
     
     useEffect(() => {
 
-
         const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/urls/${id}`);
 
         promise.then((res) => {console.log(res.data);setUrl(res.data)});
@@ -22,7 +21,7 @@ export default function OnlyUrl(){
 
     function view(){
         const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/urls/open/${url?.shortUrl}`);
-        promise.then(alert('deu certo'));
+        promise.then(console.log('deu certo'));
         promise.catch(err => console.log(err.message));
     }
     
