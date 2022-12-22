@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export default function OnlyUrl(){
 
@@ -25,9 +24,9 @@ export default function OnlyUrl(){
         <>
             <Div>
                 <h1>Seu link mais curto!</h1>
-                <Link to={`/urls/open/${url?.shortUrl}`}>
+                <a href={`http://localhost:4000/urls/open/${url?.shortUrl}`}>
                     <p>{url?.shortUrl}</p>
-                </Link>
+                </a>
             </Div>
             <Div>
                 <h1>link de origem!</h1>

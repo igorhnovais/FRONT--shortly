@@ -31,20 +31,25 @@ export default function UrlList({item, i, user}){
 
     return (
         <>
-            <Div>
-                <Link to={`/urls/${item.id}`} >
+            <Link to={`/urls/${item.id}`} >
+                <Div>
                     <DivUrl> <p>{url}</p></DivUrl>
                     <DivShort><p>{shortUrl}</p></DivShort>
                     <DivVisit><p>quantidade de visitas: {visitCount}</p></DivVisit>
-                    <FaTrashAlt onClick={deleteUrl}/>
-                </Link>
-            </Div>
+                    <FaTrashAlt onClick={deleteUrl}/>              
+                </Div>
+            </Link>
         </>
     )
 }
 
 const Div = styled.div`
     display: flex;
+    justify-content: center;
+    min-width: 800px;
+    margin-bottom: 20px;
+    background-color: #c6c6c6;
+    border-radius: 5px;
     & svg{
         font-size: 100px;
         color: red;
@@ -53,8 +58,8 @@ const Div = styled.div`
 
 const DivUrl = styled.div`
     max-width: 250px;
-    background-color: red;
     text-align: center;
+    color: black;
     & div{
         display: flex;
         justify-content: center;
@@ -67,9 +72,11 @@ const DivShort = styled.div`
     display: flex;
     justify-content: center;
     margin-left: 100px;
+    color: black;
     
 `
 
 const DivVisit = styled.div`
     width: 250px;
+    color: black;
 `
