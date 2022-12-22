@@ -24,7 +24,7 @@ export default function OnlyUrl(){
         <>
             <Div>
                 <h1>Seu link mais curto!</h1>
-                <a href={`http://localhost:4000/urls/open/${url?.shortUrl}`}>
+                <a href={`${url?.url}`}>
                     <p>{url?.shortUrl}</p>
                 </a>
             </Div>
